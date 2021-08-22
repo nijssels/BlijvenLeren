@@ -22,7 +22,7 @@ export class LeerResource extends Component {
           <input type="text" className="form-control" id="naamInput" defaultValue={this.state.item.naam} onChange={this.updateNaam} />
         </div>
         <div className="form-group">
-          <label htmlFor="omschrijvingTextArea">Example textarea</label>
+          <label htmlFor="omschrijvingTextArea">Omschrijving</label>
           <textarea className="form-control" id="omschrijvingTextArea" defaultValue={this.state.item.omschrijving} onChange={this.updateOmschrijving} rows="3"/>
         </div>
         <button className="btn btn-primary" onClick={this.cancel}>Cancel</button>
