@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlijvenLeren", "BlijvenLeren.csproj", "{1CE6CAC6-90B0-42E5-9E0E-2DC0DF699A7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{4B14DF68-E6B8-414F-B784-064AE051DE62}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main_blijvenlerenwebapp.yml = .github\workflows\main_blijvenlerenwebapp.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
