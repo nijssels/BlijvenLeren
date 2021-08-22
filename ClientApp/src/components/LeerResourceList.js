@@ -86,39 +86,51 @@ export class LeerResourceList extends Component {
       });
     }
 
-    onSave(leerResource) {
-      var nieuweLeerResources;
-      if (leerResource.id == null) {
-        leerResource.id = Math.max(...this.state.leerresources.map(lr => lr.id)) + 1;
-        nieuweLeerResources = [...this.state.leerresources, leerResource];
-      }
-      else {
-        nieuweLeerResources = this.state.leerresources.map(lr => {
-          if (lr.id === leerResource.id) {
-            return Object.assign({}, leerResource)
+    async onSave(leerResource) {
+      await fetch('leerresource', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(leerResource)
+      })
+      .then(response => {
+        let savedLeerResource = response.json();
+        let nieuweLeerResources = this.state.leerresources.map(lr => {
+          if (lr.id === savedLeerResource.id) {
+            return savedLeerResource
           }
           else {
             return lr;
           }
         });
-      }
 
-      this.setState({
-        item: null,
-        leerresources: nieuweLeerResources
-      });
+        this.setState({
+          item: null,
+          leerresources: nieuweLeerResources
+        });
+      })
+    }
+
+    async removeResource(removalitem) {
+      await fetch('leerresource', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(removalitem)
+      })
+      .then(response => {
+        this.setState({
+          leerresources: this.state.leerresources.filter(
+            leerresource => { return leerresource.id !== removalitem.id; })
+        })
+      })
     }
 
     onCancel() {
       this.setState({
         item: null
       });
-    }
-
-    removeResource(removalitem) {
-        this.setState({
-          leerresources: this.state.leerresources.filter(
-              leerresource => { return leerresource.id !== removalitem.id; })
-        })
     }
 }
